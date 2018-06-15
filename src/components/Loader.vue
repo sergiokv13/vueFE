@@ -32,7 +32,6 @@ export default {
     margin: 20px auto;
     width: 50px;
     height: 50px;
-    display: none;
   }
 
   .sk-cube-grid {

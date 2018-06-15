@@ -1,31 +1,40 @@
 <template>
   <div>
     <h1>Local Techs</h1>
-    <table class="table table-bordered text-left table-hover">
-      <thead>
-        <tr>
-          <th>Tech/Truck</th>
-          <th>Location id</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="tech in techs">
-          <th>{{tech.display_name}}</th>
-          <th>{{tech.location_pk}}</th>
-          <th>
-            <router-link :to="'/Inventory/' + tech.location_pk + '/' + tech.display_name" 
-            class="nav-link">Inventory</router-link>
-          </th>
-        </tr>
-      </tbody>
-    </table>
+    <span v-if="techs">
+      <table class="table table-bordered text-left table-hover">
+        <thead>
+          <tr>
+            <th>Tech/Truck</th>
+            <th>Location id</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="tech in techs">
+            <th>{{tech.display_name}}</th>
+            <th>{{tech.location_pk}}</th>
+            <th>
+              <router-link :to="'/Inventory/' + tech.location_pk + '/' + tech.display_name" 
+              class="nav-link">Inventory</router-link>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+    </span>
+    <span v-else>
+      <Loader/>
+    </span>
   </div>
 </template>
 
 <script>
+import Loader from '@/components/Loader'
 export default {
   name: 'TechsView',
+  components: {
+    'Loader': Loader
+  },
   data() {
     return {
       techs: ''
