@@ -18,11 +18,9 @@
         </option>
       </select>
       <template v-if="showRouteParam">
-        {{$route.params.displayName}} - {{$route.params.locationId}}
         <TechInventory v-bind:locationId="$route.params.locationId" v-bind:truck_name="$route.params.displayName"/>
-        
       </template>
-      <template v-else="showRouteParam">
+      <template v-else-if="locationIsSet">
         <TechInventory v-bind:locationId="selectedTech.locationId" v-bind:truck_name="selectedTech.displayName"/>
       </template>
     </span>
@@ -54,6 +52,9 @@
     computed: {
       showRouteParam: function(){
         return (this.$route.params.locationId && this.selectedTech.locationId == '')
+      },
+      locationIsSet: function(){
+        return (this.selectedTech.locationId != '')
       }
     },
     mounted () {
