@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>{{truck_name}}</h2>
-    <table class="table table-bordered text-left table-hover">
+    <table id="inventory_table" class="table table-bordered text-left table-hover">
       <thead>
         <tr>
           <th>Vend code</th>
@@ -45,17 +45,28 @@ export default {
     {
     this.$http
       .get('http://localhost:3000/inventory/get?location_id=' + this.locationId)
-      .then(response => (this.items = response.data.data))
+      .then(response => {
+        this.items = response.data.data
+        this.$nextTick(() => {
+         $('#inventory_table').DataTable()
+        })
+      })
     }
+   
   },
   created () {
     if (this.locationId != '')
     {
     this.$http
       .get('http://localhost:3000/inventory/get?location_id=' + this.locationId)
-      .then(response => (this.items = response.data.data))
+      .then(response => {
+        this.items = response.data.data
+        this.$nextTick(() => {
+         $('#inventory_table').DataTable()
+        })
+      })
     }
-  }
+  },
 }
 </script>
 

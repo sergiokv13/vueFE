@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Local Techs</h1>
-    <table class="table table-bordered text-left table-hover">
+    <table id="techs_table" class="table table-bordered text-left table-hover">
       <thead>
         <tr>
           <th>Tech/Truck</th>
@@ -35,6 +35,9 @@ export default {
     this.$http
       .get('http://localhost:3000/local_techs/get?employee_id=' + this.currentUser.userId)
       .then(response => (this.techs = response.data.data))
+  },
+  updated () {
+    $('#techs_table').DataTable()
   }
 }
 </script>
