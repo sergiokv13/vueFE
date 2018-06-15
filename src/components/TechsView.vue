@@ -1,25 +1,25 @@
 <template>
   <div>
-    <div v-if="this.isAuthenticated">
-      <h1>Local Techs</h1>
-      <table class="table table-bordered text-left table-hover">
-        <thead>
-          <tr>
-            <th>Tech/Truck</th>
-            <th>Location id</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="tech in techs">
-            <th>{{tech.display_name}}</th>
-            <th>{{tech.location_pk}}</th>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div v-else="this.isAuthenticated">
-      <h1>Please login.</h1>
-    </div>
+    <h1>Local Techs</h1>
+    <table class="table table-bordered text-left table-hover">
+      <thead>
+        <tr>
+          <th>Tech/Truck</th>
+          <th>Location id</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="tech in techs">
+          <th>{{tech.display_name}}</th>
+          <th>{{tech.location_pk}}</th>
+          <th>
+            <router-link :to="'/Inventory/' + tech.location_pk + '/' + tech.display_name" 
+            class="nav-link">Inventory</router-link>
+          </th>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 

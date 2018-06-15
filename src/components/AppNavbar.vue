@@ -8,10 +8,10 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link to="Inventory" class="nav-link">Inventory</router-link>
+            <router-link to="/Inventory" class="nav-link">Inventory</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="techs" class="nav-link">Techs</router-link>
+            <router-link to="/techs" class="nav-link">Techs</router-link>
           </li>
         </ul>
 
@@ -21,7 +21,7 @@
                 <button v-on:click="logoutUser()" class="dropdown-item logout-button">Logout</button>
             </template>
             <template v-else="this.isAuthenticated">
-                <router-link to="login" class="nav-link">Login</router-link>
+                <router-link to="/login" class="nav-link">Login</router-link>
             </template>
           </li>
         </ul>

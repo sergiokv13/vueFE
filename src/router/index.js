@@ -31,6 +31,11 @@ export default new Router({
       path: '/inventory',
       name: 'InventoryView',
       component: InventoryView,
+    },
+    {
+      path: '/inventory/:locationId/:displayName',
+      name: 'InventoryViewWithParam',
+      component: InventoryView,
     }
   ]
 })

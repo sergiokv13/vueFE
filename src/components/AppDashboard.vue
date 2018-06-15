@@ -1,12 +1,7 @@
 <template>
-  <div v-if="this.isAuthenticated">
     <div class="dashboard">
      <h1>This is the main page.</h1>
     </div>
-  </div>
-  <div v-else="this.isAuthenticated">
-    <h1>Please login.</h1>
-  </div>
 </template>
 
 <script>

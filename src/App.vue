@@ -3,7 +3,15 @@
     <AppNavbar/>
     <div class="container text-center">
       <div class="jumbotron">
-        <router-view/>
+        <div v-if="this.isAuthenticated">
+          <router-view/>
+        </div>
+        <div v-else-if="showLogin">
+          <router-view/>
+        </div>
+        <div v-else>
+          <h1>Please login</h1>
+        </div>
       </div>
     </div>
   </div>
@@ -11,7 +19,12 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  computed: {
+    showLogin: function() {
+      return (this.$route.path == '/login')
+    }
+  }
 }
 </script>
 

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div v-if="this.isAuthenticated">
       <h1>Inventory</h1>
         <select v-model="selectedTech">
           <option disabled v-bind:value="{locationId: '',displayName: ''}">
@@ -17,13 +16,17 @@
             {{ tech.display_name }}
           </option>
         </select>
-        <TechInventory v-bind:locationId="selectedTech.locationId" v-bind:truck_name="selectedTech.displayName"/>
-    
+        <template v-if="showRouteParam">
+          {{$route.params.displayName}} - {{$route.params.locationId}}
+          <TechInventory v-bind:locationId="$route.params.locationId" v-bind:truck_name="$route.params.displayName"/>
+          
+        </template>
+        <template v-else="showRouteParam">
+          <TechInventory v-bind:locationId="selectedTech.locationId" v-bind:truck_name="selectedTech.displayName"/>
+        </template>
+
+
     </div>
-    <div v-else="this.isAuthenticated">
-      <h1>Please login.</h1>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -40,6 +43,11 @@
           locationId: '',
           displayName: ''
         }
+      }
+    },
+    computed: {
+      showRouteParam: function(){
+        return (this.$route.params.locationId && this.selectedTech.locationId == '')
       }
     },
     mounted () {
