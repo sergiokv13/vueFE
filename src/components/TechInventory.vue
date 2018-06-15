@@ -40,33 +40,29 @@ export default {
       items: '',
     }
   },
-  updated () {
-    if (this.locationId != '')
-    {
-    this.$http
-      .get('http://localhost:3000/inventory/get?location_id=' + this.locationId)
-      .then(response => {
-        this.items = response.data.data
-        this.$nextTick(() => {
-         $('#inventory_table').DataTable()
+  methods: {
+    fireLoading: function(){
+      if (this.locationId != '')
+      {
+      this.$http
+        .get('http://localhost:3000/inventory/get?location_id=' + this.locationId)
+        .then(response => {
+          this.items = response.data.data
+          this.$nextTick(() => {
+           $('#inventory_table').DataTable()
+          })
         })
-      })
-    }
-   
-  },
-  created () {
-    if (this.locationId != '')
-    {
-    this.$http
-      .get('http://localhost:3000/inventory/get?location_id=' + this.locationId)
-      .then(response => {
-        this.items = response.data.data
-        this.$nextTick(() => {
-         $('#inventory_table').DataTable()
-        })
-      })
+      }
     }
   },
+  created() {
+    this.fireLoading()
+  },
+  watch: {
+    'locationId': function(val,oldVal) {
+      this.fireLoading()
+    }
+  }
 }
 </script>
 

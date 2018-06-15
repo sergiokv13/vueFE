@@ -37,7 +37,10 @@ export default {
       .then(response => (this.techs = response.data.data))
   },
   updated () {
-    $('#techs_table').DataTable()
+    $('#techs_table').DataTable({
+            "aLengthMenu": [[5, 10, 50, -1], [5, 10, 50, "All"]],
+            "iDisplayLength": 5
+    })
   }
 }
 </script>
