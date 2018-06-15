@@ -22,8 +22,8 @@ export default {
   name: 'LoginForm',
   data () {
     return {
-      locationIdField: '',
-      userIdField: '',
+      locationIdField: '828',
+      userIdField: '32',
       userIdError: '',
       locationIdError: ''
     }

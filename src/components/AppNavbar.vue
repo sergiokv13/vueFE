@@ -8,10 +8,10 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link to="techs" class="nav-link">Techs</router-link>
+            <router-link to="Inventory" class="nav-link">Inventory</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Inventory</a>
+            <router-link to="techs" class="nav-link">Techs</router-link>
           </li>
         </ul>
 

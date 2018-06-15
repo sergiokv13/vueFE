@@ -5,7 +5,7 @@
       <table class="table table-bordered text-left table-hover">
         <thead>
           <tr>
-            <th>Tech/Truch</th>
+            <th>Tech/Truck</th>
             <th>Location id</th>
           </tr>
         </thead>
