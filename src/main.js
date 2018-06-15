@@ -7,6 +7,7 @@ import router from './router'
 import authentication from '@/mixins/authentication'
 import store from './store'
 import AppNavbar from '@/components/AppNavbar'
+import Loader from '@/components/Loader'
 
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -18,6 +19,7 @@ import VueAxios from 'vue-axios'
 Vue.use(VueAxios, axios)
 Vue.use(BootstrapVue);
 Vue.component('AppNavbar',AppNavbar)
+Vue.component('Loader',Loader)
 
 Vue.$http = axios;
 
@@ -26,6 +28,6 @@ new Vue({
   el: '#app',
   store,
   router,
-  components: { App, AppNavbar },
+  components: { App },
   template: '<App/>'
 })
