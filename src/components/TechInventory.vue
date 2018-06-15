@@ -1,10 +1,10 @@
 <template>
   <div>
     <h2>{{truck_name}}</h2>
-    <template v-if="loading">
+    <span v-show="loading">
       <Loader/>
-    </template>
-    <template v-else>
+    </span>
+    <span v-show="!loading">
       <table id="inventory_table" class="table table-bordered text-left table-hover">
         <thead>
           <tr>
@@ -29,7 +29,7 @@
           </tr>
         </tbody>
       </table>
-    </template>
+    </span>
   </div>
 </template>
 
@@ -50,35 +50,29 @@ export default {
       loading: true
     }
   },
-  updated () {
-    if (this.locationId != '')
-    {
-      this.loading = false
-    this.$http
-      .get('http://localhost:3000/inventory/get?location_id=' + this.locationId)
-      .then(response => {
-        this.loading = false
-        this.items = response.data.data
-        this.$nextTick(() => {
-          $('#inventory_table').DataTable()
+  methods: {
+    fireLoading: function(){
+      if (this.locationId != '')
+      {
+      this.loading = true
+      this.$http
+        .get('http://localhost:3000/inventory/get?location_id=' + this.locationId)
+        .then(response => {
+          this.loading = false
+          this.items = response.data.data
+          this.$nextTick(() => {
+           $('#inventory_table').DataTable()
+          })
         })
-      })
+      }
     }
-   
   },
-  created () {
-    if (this.locationId != '')
-    {
-       this.response = ''
-    this.$http
-      .get('http://localhost:3000/inventory/get?location_id=' + this.locationId)
-      .then(response => {
-         this.response = response
-        this.items = response.data.data
-        this.$nextTick(() => {
-          $('#inventory_table').DataTable()
-        })
-      })
+  created() {
+    this.fireLoading()
+  },
+  watch: {
+    'locationId': function(val,oldVal) {
+      this.fireLoading()
     }
   }
 }
