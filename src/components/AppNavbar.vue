@@ -13,6 +13,9 @@
           <li class="nav-item">
             <router-link to="/techs" class="nav-link">Techs</router-link>
           </li>
+          <li class="nav-item">
+            <router-link to="/items" class="nav-link">Items</router-link>
+          </li>
         </ul>
 
         <ul class="navbar-nav ml-auto">

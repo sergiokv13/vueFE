@@ -1,12 +1,17 @@
 <template>
   <div>
       <h1>Items</h1>
+      <CheckStatus/>
   </div>
 </template>
 
 <script>
+import CheckStatus from '@/components/CheckStatus'
 export default {
-  name: 'TechsView',
+  name: 'ItemsView',
+  components: {
+    'CheckStatus': CheckStatus
+  },
   data() {
     return {
       techs: ''

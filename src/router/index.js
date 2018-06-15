@@ -5,6 +5,8 @@ import LoginForm from '@/components/LoginForm'
 import TechsView from '@/components/TechsView'
 import InventoryView from '@/components/InventoryView'
 import TechInventory from '@/components/TechInventory'
+import ItemsView from '@/components/ItemsView'
+
 
 
 
@@ -36,6 +38,11 @@ export default new Router({
       path: '/inventory/:locationId/:displayName',
       name: 'InventoryViewWithParam',
       component: InventoryView,
+    },
+    {
+      path: '/items',
+      name: 'ItemsView',
+      component: ItemsView,
     }
   ]
 })
