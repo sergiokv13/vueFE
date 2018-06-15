@@ -4,6 +4,7 @@
       <h1>Welcome</h1>
     </div>
     <div v-else="this.isAuthenticated" class="form-group">
+      <h1>Please login</h1>
       <label for="userId">User id</label>
       <input v-model="userIdField" class="form-control">
       <span class="text-danger">{{userIdError}}</span>

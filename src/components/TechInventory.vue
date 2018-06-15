@@ -1,35 +1,30 @@
 <template>
   <div>
-    <div v-if="this.isAuthenticated">
-      <h2>{{truck_name}}</h2>
-      <table class="table table-bordered text-left table-hover">
-        <thead>
-          <tr>
-            <th>Vend code</th>
-            <th>Description</th>
-            <th>Serial</th>
-            <th>Status</th>
-            <th>Truck</th>
-            <th>Last location</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="item in items">
-            <th>{{item.prd_vend_code}}</th>
-            <th>{{item.prd_description}}</th>
-            <th>{{item.serial}}</th>
-            <th>{{item.status}}</th>
-            <th>{{item.ivl_description}}</th>
-            <th>{{item.last_location}}</th>
-            <th>{{item.bmh_start_date}}</th>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div v-else="this.isAuthenticated">
-      <h1>Please login.</h1>
-    </div>
+    <h2>{{truck_name}}</h2>
+    <table class="table table-bordered text-left table-hover">
+      <thead>
+        <tr>
+          <th>Vend code</th>
+          <th>Description</th>
+          <th>Serial</th>
+          <th>Status</th>
+          <th>Truck</th>
+          <th>Last location</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in items">
+          <th>{{item.prd_vend_code}}</th>
+          <th>{{item.prd_description}}</th>
+          <th>{{item.serial}}</th>
+          <th>{{item.status}}</th>
+          <th>{{item.ivl_description}}</th>
+          <th>{{item.last_location}}</th>
+          <th>{{item.bmh_start_date}}</th>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -46,9 +41,20 @@ export default {
     }
   },
   updated () {
+    if (this.locationId != '')
+    {
     this.$http
       .get('http://localhost:3000/inventory/get?location_id=' + this.locationId)
       .then(response => (this.items = response.data.data))
+    }
+  },
+  created () {
+    if (this.locationId != '')
+    {
+    this.$http
+      .get('http://localhost:3000/inventory/get?location_id=' + this.locationId)
+      .then(response => (this.items = response.data.data))
+    }
   }
 }
 </script>
