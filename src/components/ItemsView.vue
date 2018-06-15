@@ -2,15 +2,18 @@
   <div>
       <h1>Items</h1>
       <CheckStatus/>
+      <PlaceItem/>
   </div>
 </template>
 
 <script>
 import CheckStatus from '@/components/CheckStatus'
+import PlaceItem from '@/components/PlaceItem'
 export default {
   name: 'ItemsView',
   components: {
-    'CheckStatus': CheckStatus
+    'CheckStatus': CheckStatus,
+    'PlaceItem': PlaceItem
   },
   data() {
     return {

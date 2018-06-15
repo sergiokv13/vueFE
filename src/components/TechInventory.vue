@@ -41,14 +41,20 @@ export default {
     }
   },
   updated () {
+    if (this.locationId != '')
+    {
     this.$http
       .get('http://localhost:3000/inventory/get?location_id=' + this.locationId)
       .then(response => (this.items = response.data.data))
+    }
   },
   created () {
+    if (this.locationId != '')
+    {
     this.$http
       .get('http://localhost:3000/inventory/get?location_id=' + this.locationId)
       .then(response => (this.items = response.data.data))
+    }
   }
 }
 </script>
