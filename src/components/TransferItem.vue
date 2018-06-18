@@ -13,19 +13,28 @@
       </option>
     </select>
     <br>
-    <button class="btn btn-success" v-on:click="transferItem()">Place item</button>
+    <template v-if="loading">
+      <Loader/>
+    </template>
+    <template v-else>
+      <button class="btn btn-success" v-on:click="transferItem()">Place item</button>
+    </template>
   </div>
 </template>
 
 <script>
-
+import Loader from '@/components/Loader'
 export default {
   name: 'TransferItem',
+    components: {
+      'Loader': Loader
+    },
   data() {
     return {
       techs: '',
       macAddress: '001DCDC647B0',
-      locationId: ''
+      locationId: '',
+      loading: false
     }
   },
   mounted () {
@@ -35,13 +44,17 @@ export default {
   },
   methods: {
     transferItem: function(){
+      this.loading = true
       this.$http
         .post('http://localhost:3000/inventory/transfer_item?item_mac=' + this.macAddress + '&location_id='+ this.locationId)
         .then(
-          response => ( 
-          alert(response.data.data ? response.data.data : "The item is already in use.")
-        ))
-      .catch(error=> {
+          response => {
+            this.loading = false
+            alert(response.data.data ? response.data.data : "The item is already in use.")
+          }
+        )
+      .catch(error=> { 
+        this.loading = false
         alert("Technical debt - Retrieve error message")
       })
     }
